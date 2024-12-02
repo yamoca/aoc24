@@ -17,17 +17,14 @@ for line in f.readlines():
     list2.insert(0, int(parts[1].strip()))
 
 
-#remove duplicates 
 list1.sort()
 
-print(list1)
-for i in range(len(list1)-2):
-    print(i)
-    print(list1[i])
-    print(list1[i+1])
-    print("")
-    if list1[i] == list1[i+1]:
-        list1.pop(i)
-        i -= 1
+def removeDuplicates(dupes):
+    totalRemoved = 0 # track count of items removed from list (as list will progressively get shorter) as items shift to the left
+    for i in range(len(dupes)-2):
+        if dupes[i-totalRemoved] == dupes[i-totalRemoved+1]:
+            dupes.pop(i-totalRemoved)
+            totalRemoved +=1
 
-print(list1)
+    return dupes
+
