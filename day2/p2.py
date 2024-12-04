@@ -7,7 +7,7 @@ if counter = 0 and unsafe, counter = 1 and remove current level, recheck by doin
 
 
 reports = []
-f = open("input.txt")
+f = open("testinput.txt")
 for line in f.readlines():
     report = line.strip().split(" ")
     reports.append(report)
