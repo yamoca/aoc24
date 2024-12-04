@@ -12,7 +12,9 @@ for line in f.readlines():
     reports.append(report)
 
 
+safe_count = 0
 for report in reports:
+    unsafe = False
     if int(report[0]) == int(report[1]):
         unsafe = True
         break
@@ -30,6 +32,7 @@ for report in reports:
                 unsafe = True
 
     if not unsafe:
+        print(report, " was safe")
         safe_count += 1
 
 
