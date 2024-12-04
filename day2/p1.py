@@ -5,6 +5,9 @@ check bounds
 increment safe counter
 """
 
+### in hindsight, took way too long to debug. could have avoided this by simply converting all values in report to integer in one go at top
+
+
 reports = []
 f = open("input.txt")
 for line in f.readlines():
