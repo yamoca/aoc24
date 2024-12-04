@@ -9,7 +9,7 @@ increment safe counter
 
 
 reports = []
-f = open("input.txt")
+f = open("testinput.txt")
 for line in f.readlines():
     report = line.strip().split(" ")
     reports.append(report)
