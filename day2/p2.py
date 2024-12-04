@@ -29,6 +29,7 @@ for report in reports:
         # print(report, " increasing")
 
 
+    ### PROBLEM: IN SOME SITUATIONS SHOULD REMOVE i, some others should remove i+1
     removedCounter = 0 
     copy = []
     for level in range(len(report)-1):
@@ -40,9 +41,9 @@ for report in reports:
             if int(report[level-removedCounter]) - int(report[level+1-removedCounter]) > 3 or int(report[level-removedCounter]) <= int(report[level+1-removedCounter]): # check if within bounds AND if gradient is same direction
                 if removedCounter == 0: # ie dampener hasnt been activated
                     # report.remove(report[level])
-                    report.pop(level+1)
+                    removedval = report.pop(level-removedCounter)
                     print(report, "after removing")
-                    print("value number: ", level, "value removed: ", report[level+1])
+                    print("value number: ", level, "value removed: ", removedval) 
                     removedCounter += 1
                     copy = report
                 else:
@@ -52,9 +53,9 @@ for report in reports:
             if int(report[level-removedCounter]) - int(report[level+1-removedCounter]) < -3 or int(report[level-removedCounter]) >= int(report[level+1-removedCounter]):
                 if removedCounter == 0:
                     # report.remove(report[level])
-                    report.pop(level+1)
+                    removedval = report.pop(level-removedCounter)
                     print(report, "after removing")
-                    print("value number: ", level, "value removed: ", report[level+1])
+                    print("increasing value number: ", level, "value removed: ", removedval) 
                     removedCounter += 1
                     copy = report
                 else:
