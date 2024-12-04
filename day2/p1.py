@@ -18,7 +18,7 @@ for report in reports:
     reportnum += 1
     unsafe = False
     if int(report[0]) == int(report[1]):
-        print(report, " first numbers equal")
+        # print(report, " first numbers equal")
         unsafe = True
     elif int(report[0]) > int(report[1]): # e.g 10, 6
         # print(report, " decreasing")
@@ -34,12 +34,12 @@ for report in reports:
         #     unsafe = True
         #     break
         if gradient == "decreasing":
-            if int(report[level]) - int(report[level+1]) > 3 or report[level] <= report[level+1]: # check if within bounds AND if gradient is same direction
+            if int(report[level]) - int(report[level+1]) > 3 or int(report[level]) <= int(report[level+1]): # check if within bounds AND if gradient is same direction
                 # print(report, " unsafe at step 1" )
                 unsafe = True
                 # break
         if gradient == "increasing":
-            if int(report[level]) - int(report[level+1]) < -3 or report[level] >= report[level+1]:
+            if int(report[level]) - int(report[level+1]) < -3 or int(report[level]) >= int(report[level+1]):
                 # print(report, " unsafe at step 2")
                 unsafe = True
                 # break
