@@ -13,38 +13,39 @@ for line in f.readlines():
 
 
 safe_count = 0
+reportnum = 0
 for report in reports:
+    reportnum += 1
     unsafe = False
     if int(report[0]) == int(report[1]):
         print(report, " first numbers equal")
         unsafe = True
-        break
     elif int(report[0]) > int(report[1]): # e.g 10, 6
-        print(report, " decreasing")
+        # print(report, " decreasing")
         gradient = "decreasing"
     else:
         gradient = "increasing"
-        print(report, " increasing")
+        # print(report, " increasing")
 
 
-    # problem where it allows decrease then increase or vice versa
+    
     for level in range(len(report)-1):
         # if report[level] == report[level+1]:
         #     unsafe = True
         #     break
         if gradient == "decreasing":
             if int(report[level]) - int(report[level+1]) > 3 or report[level] <= report[level+1]: # check if within bounds AND if gradient is same direction
-                print(report, " unsafe at step 1" )
+                # print(report, " unsafe at step 1" )
                 unsafe = True
-                break
+                # break
         if gradient == "increasing":
             if int(report[level]) - int(report[level+1]) < -3 or report[level] >= report[level+1]:
-                print(report, " unsafe at step 2")
+                # print(report, " unsafe at step 2")
                 unsafe = True
-                break
+                # break
 
     if not unsafe:
-        print(report, " was safe")
+        print(report, " (report number: ", reportnum, ") was safe")
         safe_count += 1
 
 
