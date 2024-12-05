@@ -1,5 +1,5 @@
 reports = []
-with open("testinput.txt") as f:
+with open("input.txt") as f:
     for line in f:
         report = [int(x) for x in line.strip().split(" ")]
         reports.append(report)
@@ -40,6 +40,20 @@ safetotal = 0
 for report in reports:
     if isSafe(report):
         safetotal += 1
+    else:
+        for levelIndex in range(len(report)):
+            copy = report
+            # print(copy)
+            removedVal = copy.pop(levelIndex)
+            if isSafe(copy):
+                safetotal += 1
+                break
+            else:
+                copy.insert(levelIndex, removedVal)
+
+
+
+
 
 
 print(safetotal) 
