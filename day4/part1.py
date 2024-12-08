@@ -1,13 +1,13 @@
 import re
 
 data = []
-with open("testinput.txt") as f:
+with open("input.txt") as f:
     for line in f.readlines():
         data.append(line.strip())
 
 
-# max diagonals = 14 not 20 as only diagonals with length 4  or greater will have xmas in
-def get_diagonals(data, max_diagonals=14):
+# max diagonals = 2xwidth/height (should be a square) 
+def get_diagonals(data, max_diagonals):
     diagonaldata = []
     combined = [] 
     # First set of diagonals (data[i][i+offset])
@@ -36,7 +36,7 @@ def count_matches(data):
                 horizonantal.append(match)
 
     print(len(horizonantal))
-    print(horizonantal)
+    # print(horizonantal)
 
 
 
@@ -45,7 +45,7 @@ count_matches(data)
 # for test data should be 5
 
 # diagonal
-diagonaldata = get_diagonals(data)
+diagonaldata = get_diagonals(data, 2*len(data))
 
 count_matches(diagonaldata)
 
@@ -63,7 +63,7 @@ for line in rotatedtuple:
 count_matches(rotated)
 # for test data should be 3
 
-rotateddiagonaldata = get_diagonals(data)
+rotateddiagonaldata = get_diagonals(data, 2*len(data))
 count_matches(rotateddiagonaldata)
 
 
