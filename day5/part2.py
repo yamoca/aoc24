@@ -12,7 +12,7 @@ for line in f.readlines():
             updates.append(line.strip())
 
 
-def check_rule(rule, update):
+def correct_for_rule(rule, update):
     num1 = rule.split("|")[0]
     num2 = rule.split("|")[1]
     if update.find(num1) == -1 or update.find(num2) == -1:  ## if a number from a rule isnt found in the update, ignore that rule
@@ -25,23 +25,45 @@ def check_rule(rule, update):
 
 
 correct_order = []
-
-
+incorrect_order = []
 for update in updates:
     rules_passed = 0
     for rule in rules:
-        if check_rule(rule, update):
+        if correct_for_rule(rule, update):
             rules_passed += 1
     if rules_passed == len(rules): # all rules passed
         correct_order.append(update)
+    else: 
+        incorrect_order.append(update)
 
 
-sum = 0
-for update in correct_order: 
+
+
+corrected = []
+for update in incorrect_order:
+    rules_passed = 0
     nums = update.split(",")
-    print(nums)
-    print(int(nums[int(len(nums)/2)]))
-    sum += int(nums[int(len(nums)/2)])
+    i = 0
+    while i < len(rules)-1:
+        if correct_for_rule(rules[i], ",".join(nums)):
+            # corrected.append(update)
+            pass
+        else:
+            num1 = rules[i].split("|")[0]
+            num2 = rules[i].split("|")[1]
+            nums.remove(num2)
+            nums.insert(nums.index(num1)+1, num2)
+            i = 0 # run thru all rules again
+        i += 1
 
+    corrected.append(",".join(nums)) 
+    
+
+   
+print(corrected)
+sum = 0
+for update in corrected: 
+    nums = update.split(",")
+    sum += int(nums[int(len(nums)/2)])
 
 print(sum)
