@@ -21,6 +21,8 @@ def evaluateCalcs(desired, values, operators):
         elif operators[i-1] == "+":
             # print(sum, "+", values[i], "=", sum+values[i])
             sum += values[i]
+        elif operators[i-1] == "|":
+            sum = int(str(sum)+str(values[i]))
         else:
             print("unknown operator", operators[i], "in", operators)
         
@@ -34,7 +36,7 @@ def evaluateCalcs(desired, values, operators):
 total_calibration_result = 0
 for key in equations:
     values = equations[key]
-    operator_combinations = product("+*", repeat=len(values)-1)
+    operator_combinations = product("+*|", repeat=len(values)-1)
     for operators in operator_combinations:
         if evaluateCalcs(key, values, operators):
             total_calibration_result += key 
