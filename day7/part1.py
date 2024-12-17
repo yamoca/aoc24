@@ -11,13 +11,15 @@ for line in file.readlines():
 
 def evaluateCalcs(desired, values, operators):
     sum = values[0] 
-    values.pop(0) # start with first val and remove it
+    # print(values, "pre pop len", len(values))
+    sum = values.pop(0) # start with first val and remove it
+    # print(values, "post pop", len(values))
     for i in range(len(values)):
-        if operators[i] == "*":
-            print(sum, "*", values[i], "=", sum*values[i])
+        if operators[i-1] == "*":
+            # print(sum, "*", values[i], "=", sum*values[i])
             sum = sum * values[i]
-        elif operators[i] == "+":
-            print(sum, "+", values[i], "=", sum+values[i])
+        elif operators[i-1] == "+":
+            # print(sum, "+", values[i], "=", sum+values[i])
             sum += values[i]
         else:
             print("unknown operator", operators[i], "in", operators)
@@ -36,25 +38,29 @@ for key in equations:
     desired = copy.deepcopy(key) 
     values = equations[key]
     operators = []
+    # print(values)
     for i in range(len(values)-1, 0, -1):
         if key % values[i] == 0:
-            # print(key, "is divisble by", values[i])
+            print(key, "divided by", values[i], "equals", int(key/values[i]))
             operators.insert(0, "*")
+            key = key / values[i]
+            key = int(key)
+
         else:
+            print(key, "minus", values[i], "equals", key-values[i])
             operators.insert(0, "+")
             key -= values[i]
 
+
+    # print(operators)
     if evaluateCalcs(desired, values, operators):
         total_calibration_result += desired 
-    print(key)
-    print(values)
-    print(operators)
-    print()
+        # print(desired)
+        # print(values)
+        # print(operators)
+        print()
+
+    print(total_calibration_result)
 
 
-testdesired = 292 
-testvals = [11, 6, 16, 20] 
-testoperators = ['+', '*', '+']
 
-
-print(total_calibration_result)
