@@ -27,34 +27,43 @@ print()
 def moveFreeSpace(diskblocks):
     i = len(diskblocks)-1
     while i >= 0:
-        if len(diskblocks[i]) == 0:
-            i -= 1
-        elif diskblocks[i][0] != ".": # dont try and move free space 
-            printthelist(diskblocks)
+        if diskblocks[i][0] != ".": # dont try and move free space 
+            print()
+            print()
+            print()
+            print()
+            print("new turn")
+            print(diskblocks[i])
+            print(diskblocks) 
             free_space_index = findFreeSpaceToLeft(diskblocks, i, len(diskblocks[i]))
             if free_space_index != -1:
                 size_of_space = len(diskblocks[free_space_index])
                 diskblocks.insert(free_space_index, diskblocks[i])
-                # print("inserted")
-                # print(diskblocks)
+                print("inserted")
+                print(diskblocks)
                 if size_of_space == len(diskblocks[i+1]):
                     print("fitted perfectly")
                     diskblocks.pop(i+1)
                     diskblocks.insert(i, diskblocks.pop(free_space_index+1))
-                    printthelist(diskblocks)
+                    print(diskblocks)
                 else:
-                    consumed = diskblocks[free_space_index+1][len(diskblocks[i+1])-1:]
-                    leftover = diskblocks[free_space_index+1][:len(diskblocks[i+1])-1]
-                    # print("leftovers", leftover)
-                    # print("consumed", consumed)
+                    leftover = diskblocks[free_space_index+1][len(diskblocks[i+1]):]
+                    print("length", len(diskblocks[i+1]), "of", diskblocks[i+1])
+                    consumed = diskblocks[free_space_index+1][:len(diskblocks[i+1])]
+                    if consumed == []: 
+                        raise Exception("penis")
+                    # if leftover == []:
+                        # raise Exception("jaundice")
+                    print("leftovers", leftover)
+                    print("consumed", consumed)
                     diskblocks.pop(i+1)
-                    # print("popped")
-                    # print(diskblocks)
+                    print("popped")
+                    print(diskblocks)
                     diskblocks[free_space_index+1] = leftover
-                    # print("leftovers modified")
-                    # print(diskblocks)
+                    print("leftovers modified")
+                    print(diskblocks)
                     diskblocks.insert(i+1, consumed)
-                    # print("appended")
+                    print("appended")
                     printthelist(diskblocks)
             else: # only decrement if nothing is inserted. if things are inserted into list and we decrement index will be pointing at wrong item
                 i -= 1

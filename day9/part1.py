@@ -1,5 +1,5 @@
 
-file = open("input.txt")
+file = open("testinput.txt")
 testdiskmap = file.readline().strip()
 
 
