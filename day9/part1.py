@@ -1,4 +1,7 @@
-testdiskmap = "2333133121414131402"
+
+file = open("input.txt")
+testdiskmap = file.readline().strip()
+
 
 def diskmap_to_diskblocks(diskmap):
     diskblocks = [] 
@@ -31,4 +34,18 @@ def moveFreeSpace(diskblocks):
     diskblocks.append(".")
     return diskblocks
 
-print(moveFreeSpace(testdiskblock))
+oriented = moveFreeSpace(testdiskblock)
+print(oriented)
+
+def calcChecksum(diskblocks):
+    checkSum = 0
+    for i in range(len(diskblocks)):
+        if diskblocks[i] == ".":
+            break
+        else:
+            checkSum += i * diskblocks[i]
+
+    return checkSum
+
+
+print(calcChecksum(oriented))
